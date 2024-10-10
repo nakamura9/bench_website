@@ -5,6 +5,7 @@ import Login from './pages/login';
 import SignUp from './pages/sign_up';
 import BlogHome from './pages/blog_home';
 import Contact from './pages/contact';
+import Product from './pages/product';
 import Department from './pages/department';
 import Category from './pages/category';
 import Account from './pages/account';
@@ -14,6 +15,10 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { BASE_URL } from './constants';
+import Context from './utils/context';
 
 const router = createBrowserRouter([
   {
@@ -42,7 +47,7 @@ const router = createBrowserRouter([
         element: <Login />
       },
       {
-        path: "/signup",
+        path: "/sign-up",
         element: <SignUp />
       },
       {
@@ -58,19 +63,76 @@ const router = createBrowserRouter([
         element: <Contact />
       },
       {
-        path: "/department",
+        path: "/department/:id",
         element: <Department />
       },
       {
-        path: "/category",
+        path: "/category/:id",
         element: <Category />
+      },
+      {
+        path: "/product/:id",
+        element: <Product />
       }
     ]
   },
 ]);
 
 function App() {
-  return <RouterProvider router={router} />
+  const [account, setAccount] = useState(null)
+  const [currency, setCurrency] = useState(null)
+  const [currencies, setCurrencies] = useState([])
+  const [departments, setDepartments] = useState([])
+  const [hidePrices, setHidePrices] = useState(false)
+  const [exchangeRate, setExchangeRate] = useState(1)
+  const [message, setMessage] = useState("")
+  const [show, setShow] = useState("")
+
+  useEffect(() => {
+    axios.get(`${BASE_URL}/index`)
+      .then(r => {
+        setHidePrices(r.data.settings.hide_prices)
+        setCurrency(r.data.settings.default_currency)
+        setCurrencies(r.data.settings.available_currencies)
+        setDepartments(r.data.settings.departments)
+
+        if(!account) {
+            axios.get(`${BASE_URL}/account`)
+              .then(res => {
+                const data = res.data[0]
+                setAccount(data)
+              }).catch(err => {
+                console.log(err)
+              })
+          }      
+      })
+    
+  }, [])
+
+  const toggle = () => {
+    setShow(!show)
+  }
+
+  const renderMsg = (msg) => {
+    setMessage(msg)
+    setShow(true)
+  } 
+
+
+  return (<Context.Provider value={{
+    account:account,
+    setAccountDetails:setAccount,
+    toggle: toggle,
+    renderMessage: renderMsg,
+    currency: currency,
+    currencies: currencies,
+    hidePrices: hidePrices,
+    exchangeRate: exchangeRate,
+    departments: departments,
+    updateCurrency: setCurrency,
+    updateExchangeRate: val => setExchangeRate(val),
+  }}><RouterProvider router={router} />
+  </Context.Provider>)
 }
 
 export default App;

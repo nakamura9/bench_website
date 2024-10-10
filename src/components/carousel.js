@@ -1,4 +1,4 @@
-import {useState, useEffect, useReducer, useRef} from "react"
+import {useEffect, useReducer, useRef} from "react"
 import styles from "../styles/carousel.module.css"
 import DeferredImg from "./deferred_img"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -37,7 +37,7 @@ export default function Carousel(props) {
     useEffect(()=> {
         TrainRef.current.scroll({
             top: 0, 
-            left: state.currentImgIndex * props.container.current.offsetWidth,
+            left: state.currentImgIndex * 200,
             behavior: "smooth"
         })
 
@@ -54,7 +54,7 @@ export default function Carousel(props) {
                                 
                                 delay={(i) * 500}
                                 src={img}
-                                width={props.container.current.offsetWidth}
+                                width={200}
                             />
                         </div>
                     ))}

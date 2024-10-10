@@ -1,13 +1,64 @@
-import React from 'react'
 
-const Department = () => {
-  return (
-    <div>
-      <h1>Index</h1>
-      <p>Index page</p>
-    </div>
-  )
+import {useState, useEffect} from "react"
+import { useParams } from "react-router-dom"
+import axios from "axios"
+import Card from "../components/product"
+import styles from "../styles/department.module.css"
+import { Link } from "react-router-dom"
+import Filters from "../components/filters"
+import EmptyList from "../components/empty_list"
+import { BASE_URL } from "../constants"
+
+
+
+export default  function Department(props) {
+    const [products, setProducts] = useState([])
+    const [categories, setCategories] = useState([])
+    const [img, setImg ] = useState(null)
+    const [description, setDescription ] = useState("")
+    const [name, setName ] = useState("")
+    
+    const {id } = useParams()
+
+    useEffect(() => {
+        if(!id) {
+            return
+        }
+        axios.get(`${BASE_URL}/department/${id}`)
+            .then(res => {
+                setProducts(res.data.products || [])
+                setName(res.data.name)
+                setCategories(res.data.categories || [])
+                setDescription(res.data.description)
+                setImg(res.data.image)
+            })
+    }, [id]);
+    
+    return (
+        <div>
+            <h1>{name}</h1>
+            <div className={styles.container}>
+                <div className={styles.sidebar}>
+                    <img src={img}/>
+                    <hr />
+                    <p>{description}</p>
+                    <hr />
+                    <h4>Categories</h4>
+                    <ul className={styles.categoryList}>
+                        {categories.map(cat => (<li key={cat.id}><Link to={`/category/${cat.id}/`}>{cat.name}</Link></li>))}
+                    </ul>
+                    <hr />
+                    <Filters setProducts={setProducts} />
+                    
+                </div>
+                <div className={styles.products}>
+                {products.length == 0 && <EmptyList message="This department has no items!" />}
+                    <div className={styles.productList}>
+                        {products.map(p => <Card key={p.name} {...p}/>)}
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    )
 }
-
-
-export default Department
