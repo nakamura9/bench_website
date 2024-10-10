@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    min-width: 100%;
+    width: 100%;
+    
+}
+
+.sidebar {
+    width: 300px;
+    margin-right: 1rem;
+    padding-right: 1rem;
+    border-right : 1px solid #ccc
+}
+
+.products {
+    flex: 1
+}
+
+.productList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sidebar img {
+    width: 100%;
+    height: auto
+}
+
+.categoryList {
+    list-style-type: none;
+}
+
+@media (width < 575px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%
+    }
+}

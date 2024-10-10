@@ -1,0 +1,25 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1;
+    margin: 3rem;
+    padding: 1.5rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 1.5rem;
+}
+
+.right {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0px 2rem
+}
+
+@media (max-width:575px) {
+    .card {
+        margin: 0.5rem;
+        min-width: 250px;
+    }
+}

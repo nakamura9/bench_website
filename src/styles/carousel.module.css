@@ -1,0 +1,43 @@
+.carouselContainer {
+    overflow: hidden;
+}
+
+.carouselRoot {
+    position: relative;
+    margin-right: 1rem;
+
+}
+
+.carouselImg {
+    width: 100%;
+    max-height: 300px;
+}
+
+
+.carouselLeft,
+.carouselRight {
+    position: absolute;
+    z-index: 1000;
+    height: 100%;
+    width:50px;
+    font-size: 50px;
+    color: #eee;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.3s linear;
+}
+
+.carouselLeft:hover,
+.carouselRight:hover {
+    opacity: 1;
+}
+.carouselRight {
+    right: 0px
+}
+
+.carouselTrain {
+    display: flex;
+}

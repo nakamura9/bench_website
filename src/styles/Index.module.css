@@ -1,0 +1,85 @@
+
+
+.hero {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-align: center;
+    padding: 2rem;
+    margin: 1rem auto;
+    border-radius: 1rem;
+    background-color: white;
+    max-width: 500px;
+}
+
+.heroContainer {
+    padding-top: 15vh;
+    padding-bottom: 10vh;
+    background-size: cover;
+}
+
+.search input {
+    border: 0px;
+    outline: 0px;
+    height: 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    width: 100%;
+}
+
+.search button {
+    background-color: transparent;
+    border: 0px;
+}
+
+.search svg path {
+    color: #ccc
+}
+
+.search {
+    border-radius: 1rem;
+    border: 1px solid #eee;
+    width: 100%;
+    margin: 0px auto;
+    padding: 0.5rem;
+    position: relative;
+    display: flex;
+}
+
+.section {
+    min-height: 50vh
+}
+
+.departmentCards,
+.productList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-self: center;
+}
+
+.results {
+    position: absolute;
+    left: 0px;
+    top: calc(100% + 5px);
+    padding: 1rem;
+    background-color: white;
+    width: 100%;
+}
+
+.result {
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+    display: flex;
+}
+
+.result h4 {
+    margin-bottom: .25rem;
+}
+
+.result img {
+    width: 80px;
+    height: auto;
+}
+
+.result > div:first-child {
+    margin-right: 0.5rem
+}
