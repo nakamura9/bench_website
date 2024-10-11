@@ -47,6 +47,8 @@ export default  function Product(props) {
                 setDescription(res.data.description)
                 setImages(img_list.concat(res.data.alternate_images))
                 dispatch({type:"set-index", value:res.data.alternate_images.length + 1})
+            }).catch(err => {
+                console.log(err)
             })
     }, [id]);
 

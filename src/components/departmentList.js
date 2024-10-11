@@ -2,12 +2,13 @@ import {useEffect, useState} from "react"
 import axios from "axios"
 import {Link} from "react-router-dom"
 import styles from "../styles/components.module.css"
+import { BASE_URL } from "../constants"
 
 
 export default function DepartmentList (props) {
     const [departments, setDepartments] = useState([])
         useEffect(() => {
-            axios.get("/api/department/?summary=True")
+            axios.get(`${BASE_URL}/department/`)
                     .then(res => {
                         setDepartments(res.data)
                     })

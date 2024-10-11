@@ -43,6 +43,9 @@ export default function Carousel(props) {
 
     }, [state.currentImgIndex])
 
+    if(props.img_list.length == 0) {
+        return <FontAwesomeIcon icon="image" size="10x" />
+    }
 
     return (
         <div className={styles.carouselRoot}>

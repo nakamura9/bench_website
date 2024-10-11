@@ -19,6 +19,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BASE_URL } from './constants';
 import Context from './utils/context';
+import FAQ from './pages/faq';
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: "/product/:id",
         element: <Product />
+      },
+      {
+        path: "/faq",
+        element: <FAQ />
       }
     ]
   },

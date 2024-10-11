@@ -7,11 +7,13 @@ import styles from "../styles/department.module.css"
 import Filters from "../components/filters"
 import EmptyList from "../components/empty_list"
 import { BASE_URL } from "../constants"
+import Spinner from "../components/spinner"
 
 
 
 export default  function Category(props) {
     const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(true)
     const [img, setImg ] = useState(null)
     const [description, setDescription ] = useState("")
     const [name, setName ] = useState("")
@@ -26,10 +28,16 @@ export default  function Category(props) {
                 setName(res.data.name)
                 setDescription(res.data.description)
                 setImg(res.data.image)
+                setLoading(false)
+            }).catch(err => {
+                console.log(err)
+                setLoading(false)
             })
     }, [id]);
 
-    
+    if(loading) {
+        return <Spinner />
+    }
 
     return (
         <div>

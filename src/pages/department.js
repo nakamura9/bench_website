@@ -8,6 +8,7 @@ import { Link } from "react-router-dom"
 import Filters from "../components/filters"
 import EmptyList from "../components/empty_list"
 import { BASE_URL } from "../constants"
+import Spinner from "../components/spinner"
 
 
 
@@ -17,8 +18,10 @@ export default  function Department(props) {
     const [img, setImg ] = useState(null)
     const [description, setDescription ] = useState("")
     const [name, setName ] = useState("")
+    const [loading, setLoading] = useState(true)
     
-    const {id } = useParams()
+    const { id } = useParams()
+    const params = useParams()
 
     useEffect(() => {
         if(!id) {
@@ -31,8 +34,16 @@ export default  function Department(props) {
                 setCategories(res.data.categories || [])
                 setDescription(res.data.description)
                 setImg(res.data.image)
+                setLoading(false)
+            }).catch(err => {
+                console.log(err)
+                setLoading(false)
             })
     }, [id]);
+
+    if(loading) {
+        return <Spinner />
+    }
     
     return (
         <div>

@@ -16,6 +16,10 @@
 .cardImg {
     height: 175px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ccc
 }
 
 .cardBody {

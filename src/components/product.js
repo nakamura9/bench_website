@@ -11,7 +11,7 @@ export default function Card(props)  {
             <div className={styles.cardImg}>
                 {props.img 
                     ? <img src={props.thumbnail}/> 
-                    : null}
+                    : <FontAwesomeIcon icon="image" size="10x" />}
             </div>
             <div className={styles.cardBody}>
                 
