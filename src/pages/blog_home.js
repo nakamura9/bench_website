@@ -11,11 +11,12 @@ export default  function Blog(props) {
     const [search, setSearch] = useState("")
     const [tags, setTags] = useState([])
     const [authors, setAuthors] = useState([])
+    const [loading, setLoading] = useState(true)
     
     useEffect(() => {
         axios.get(`${BASE_URL}/blog`)
             .then(res => {
-              console.log(res.data)
+              setLoading(false)
                 setArticles(res.data)
                 if(res.data.length > 0) {
                     setTags(res.data[0].all_tags)
@@ -24,9 +25,17 @@ export default  function Blog(props) {
             })
     }, [])
 
-    if(articles.length == 0) {
+    if(loading) {
         return <Spinner />
-      }
+    }
+
+    if(articles.length == 0) {
+        return (<div className={styles.header}>
+            <h1>Welcome to the Blog!</h1>
+            <p>There are no articles in the blog at this time. <br />
+            Come back later when some become available</p>
+        </div>)
+    }
 
     return (
         <div>

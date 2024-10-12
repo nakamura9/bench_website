@@ -18,8 +18,8 @@
 }
 
 .nav > div > img, .nav img {
-    width: 90px;
-    height: auto;
+    width: auto;
+    height: 60px;
 }
 
 .nav > div:first-child {
@@ -36,11 +36,39 @@
 
 .navList li {
     list-style-type: none;
-    display: block;
-    padding: 0.5rem 1rem;
-    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
     color: #555;
     font-weight: 700;
+}
+
+.navList a {
+    display: block;
+    margin: 0.5rem 1rem;
+}
+
+.navList a,
+footer a {
+    text-decoration: none;
+}
+
+.navList a:visited {
+    color: #555;
+}
+
+footer a:visited {
+    color: white;
+}
+
+.accountButton {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 1.5rem;
 }
 
 .navDropdown {

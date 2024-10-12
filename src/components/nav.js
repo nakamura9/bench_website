@@ -4,6 +4,7 @@ import {useEffect, useState, useContext} from "react"
 import Context from "../utils/context"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import axios from 'axios'
+import Search from "./search"
 
 const CurrencyWidget = (props) => {
     const context = useContext(Context)
@@ -63,18 +64,23 @@ const AccountMenu = props => {
           className={styles.navDropdown}
           onClick={()=> setShow(!show)}
         >
-            <span>Account</span>
+            <span className={styles.accountButton}>Account</span>
             <ul
               className={styles.navDropdownList}
               style={{display: show ? "block": "none"}}
             >
+                
+                    
                 {context.account
                     ? <>
                         <li><FontAwesomeIcon icon="heart"/>  <Link to="/wishlist">Wish List</Link></li>
                         <li><FontAwesomeIcon icon="shopping-cart"/> <Link to="/cart">Cart</Link></li>
                         <li><FontAwesomeIcon icon="user"/> <Link to="/account">My Account</Link></li>
                       </>
-                    : null
+                    : <>
+                        <li><Link to="/login">Login</Link></li>
+                        <li><Link to="/sign-up">Sign Up</Link></li>
+                      </>
                 }
                 <CurrencyWidget  />
             </ul>
@@ -117,11 +123,10 @@ export default function Navbar(props) {
                         display: show ? "inline-block": "none"
                     }}><Link to="/"><img src={props.config ? props.config.company.logo : "img"}/></Link></li>
                     {context.departments.map(d => <li key={d.id}><Link to={`/department/${d.id}`}>{d.name}</Link></li>)}
+                    <li><Search /></li>
                     <li><Link to="/blog">Blog</Link></li>
                     <li><Link to="/about">About</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
-                    <li><Link to="/login">Login</Link></li>
-                    <li><Link to="/sign-up">Sign Up</Link></li>
                     <AccountMenu mobile={mobile}/>
                 </ul>
             </div>

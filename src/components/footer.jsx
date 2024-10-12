@@ -3,6 +3,7 @@ import {Link} from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export default function Footer(props) {
+    console.log({props})
     return (
         <footer className={styles.footer}>
             <div>
@@ -11,15 +12,17 @@ export default function Footer(props) {
                 <ul>
                     <li><FontAwesomeIcon icon={"question"}/> <Link to="/about/">About</Link></li>
                     <li><FontAwesomeIcon icon={"list"}/> <Link to="/faq/">FAQ</Link></li>
-                    <li><FontAwesomeIcon icon={"file"}/> Terms of Service</li>
                 </ul>
             </div>
             <div>
                 <h5>Contact</h5>
                 <hr />
                 <ul>
-                    <li><FontAwesomeIcon icon={"at"}/> Email</li>
-                    <li><FontAwesomeIcon icon={"phone"}/> Telephone</li>
+                    <li><Link><FontAwesomeIcon icon={"at"}/> Email</Link></li>
+                    <li><FontAwesomeIcon icon={"phone"}/> {
+                        props.config && props.config.company && props.config.company.telephone 
+                            ? props.config.company.telephone
+                            : "Telephone"}</li>
                     <li><FontAwesomeIcon icon={"home"}/> Address</li>
                 </ul>
             </div>

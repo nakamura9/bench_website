@@ -37,7 +37,7 @@ export default function Carousel(props) {
     useEffect(()=> {
         TrainRef.current.scroll({
             top: 0, 
-            left: state.currentImgIndex * 200,
+            left: state.currentImgIndex * props.container.current.offsetWidth,
             behavior: "smooth"
         })
 
@@ -57,7 +57,7 @@ export default function Carousel(props) {
                                 
                                 delay={(i) * 500}
                                 src={img}
-                                width={200}
+                                width={props.container.current.offsetWidth}
                             />
                         </div>
                     ))}
