@@ -10,7 +10,7 @@ import Captcha from "../components/captcha"
 
 const reducer = (state, action) => {
     const newState = {...state}
-    if(action.type == "toggle") {
+    if(action.type === "toggle") {
         newState.showModal = !state.showModal
         newState.error_msg = action.value
         newState.error_title = action.title ? action.title : "Error"

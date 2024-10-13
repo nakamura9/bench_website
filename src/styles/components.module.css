@@ -4,13 +4,44 @@
     width: 200px;
     height: 300px;
     overflow: hidden;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, 
-        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.card:hover {
+    border: 1px solid #ccc;
 }
 
 .card img {
     width: 200px;
     height: auto;
+}
+
+.card a,
+.card a:visited {
+    text-decoration: none;
+    color: #333
+}
+
+.departmentCard h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.card ul {
+    margin-top: 0px;
+    padding-left: 0.5rem
+}
+
+.card li {
+    list-style-type: none;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    border-radius: 0.25rem;
+}
+
+.card li:hover {
+    background: rgba(0, 255,0, 0.1)
 }
 
 .cardImg {
@@ -72,8 +103,33 @@
     padding: 0.5rem 1rem;
 }
 
+.departmentName {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.departmentName h4 {
+    margin-bottom: 0.5rem;
+}
+
+.departmentName:visited,
+.categoryList a:visited {
+    color: #333;
+}
+
 .categoryList li {
-    margin-top: 0.5rem
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.categoryList li:hover {
+    background-color: #dedede;
+}
+
+.categoryList a {
+    text-decoration: none;
 }
 
 .departmentList > li > ul {
@@ -117,6 +173,15 @@
     font-weight: 500;
     margin-top: 0;
     margin-bottom: .5rem
+}
+
+.productLabel a {
+    text-decoration: none;
+    color: #333
+}
+
+.productLabel a:visited {
+    color: #333
 }
 
 .productPrice {

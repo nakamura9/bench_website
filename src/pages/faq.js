@@ -32,7 +32,7 @@ export default  function FAQ(props) {
             })
     }, [])
 
-    if(faqs.length == 0) {
+    if(faqs.length === 0) {
         return <Spinner />
     }
 

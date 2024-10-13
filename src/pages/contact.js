@@ -12,7 +12,7 @@ import { BASE_URL } from "../constants"
 
 const reducer = (state, action) => {
     const newState = {...state}
-    if(action.field == "__all") {
+    if(action.field === "__all") {
         newState['name'] = ""
         newState['email'] = ""
         newState['message'] = ""
@@ -41,7 +41,7 @@ export default  function Contact(props) {
                 setData(res.data)
                 if(res.data.business_gps) {
                     const split = res.data.business_gps.split(",")
-                    if(split.length == 2) {
+                    if(split.length === 2) {
                         setLocation(split)
                     }
                 }

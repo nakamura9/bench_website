@@ -4,7 +4,7 @@ export default function Input(props) {
 
     return (<div className={styles.input}>
         <label>{props.label}</label>
-        {props.type == "textarea"
+        {props.type === "textarea"
             ? <textarea 
                 name={props.name}
                 value={props.value}

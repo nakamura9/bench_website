@@ -9,7 +9,7 @@ import Captcha from "../components/captcha"
 
 const reducer = (state, action) => {
     const newState = {...state}
-    if(action.type == "toggle") {
+    if(action.type === "toggle") {
         newState.showModal = !state.showModal
     } else {
         newState[action.field] = action.value

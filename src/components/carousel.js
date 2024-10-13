@@ -5,16 +5,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const reducer = (state, action) => {
     
-    if(action.type == "set-count") {
+    if(action.type === "set-count") {
         return ({...state, imageCount: action.value})
     }
 
-    if(action.type == "nav-left") {
+    if(action.type === "nav-left") {
         return ({...state, currentImgIndex: state.currentImgIndex > 0 
                                                 ? state.currentImgIndex - 1: 0})
     }
 
-    if(action.type == "nav-right") {
+    if(action.type === "nav-right") {
         return ({...state, currentImgIndex: state.currentImgIndex < state.imageCount - 1
                                 ? state.currentImgIndex + 1: 0})
     }
@@ -35,15 +35,17 @@ export default function Carousel(props) {
     }, [props.img_list])
 
     useEffect(()=> {
+        const width = props.container.current ? props.container.current.offsetWidth : 200
         TrainRef.current.scroll({
             top: 0, 
-            left: state.currentImgIndex * props.container.current.offsetWidth,
+            left: state.currentImgIndex * width,
             behavior: "smooth"
         })
 
     }, [state.currentImgIndex])
 
-    if(props.img_list.length == 0) {
+    console.log({props})
+    if(props.img_list.length === 0) {
         return <FontAwesomeIcon icon="image" size="10x" />
     }
 
@@ -57,7 +59,7 @@ export default function Carousel(props) {
                                 
                                 delay={(i) * 500}
                                 src={img}
-                                width={props.container.current.offsetWidth}
+                                width={props.container.current ? props.container.current.offsetWidth : 200}
                             />
                         </div>
                     ))}

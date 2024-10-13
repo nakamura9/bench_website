@@ -47,11 +47,11 @@ export default  function Category(props) {
                     <img src={img}/>
                     <hr />
                     <p>{description}</p>
-                    <hr />
+                    
                     <Filters setProducts={setProducts}/>
                 </div>
                 <div className={styles.products}>
-                    {products.length == 0 && <EmptyList message="This category has no items!" />}
+                    {products.length === 0 && <EmptyList message="This category has no items!" />}
                     
                     <div className={styles.productList}>
                         {products.map(p => <Card key={p.name} {...p}/>)}

@@ -16,7 +16,7 @@ const CurrencyWidget = (props) => {
             url: "/api/get_exchange_rate/",
             params: {currency: e.target.value}
         }).then(res => {
-            const currency_obj = context.currencies.filter(c => c.id == e.target.value)[0]
+            const currency_obj = context.currencies.filter(c => c.id === e.target.value)[0]
             context.updateCurrency(currency_obj)
             context.updateExchangeRate(res.data.rate)
         })
@@ -119,11 +119,12 @@ export default function Navbar(props) {
                     }}
                     onClick={() => mobile ? setShow(false) : null}
                 >
+                    <li><Search /></li>
                     <li style={{
                         display: show ? "inline-block": "none"
                     }}><Link to="/"><img src={props.config ? props.config.company.logo : "img"}/></Link></li>
                     {context.departments.map(d => <li key={d.id}><Link to={`/department/${d.id}`}>{d.name}</Link></li>)}
-                    <li><Search /></li>
+                    
                     <li><Link to="/blog">Blog</Link></li>
                     <li><Link to="/about">About</Link></li>
                     <li><Link to="/contact">Contact</Link></li>

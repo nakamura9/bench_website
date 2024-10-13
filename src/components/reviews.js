@@ -43,6 +43,7 @@ export default function Reviews(props) {
     return (
         <Context.Consumer>{context => (
             <div>
+            <h5>Reviews</h5>
             <div className={styles.score}>
                 <div>
                     <p>Average Score</p>
@@ -87,7 +88,7 @@ export default function Reviews(props) {
                         onClick={() => submit(context.account.id)}
                     >Submit Review</button>
                 </div>
-                : null}
+                : <p>Sign in to leave a review</p>}
             <div>
                 {props.reviews.reverse().map((review, i) =>(
                     <div className={styles.review} key={i}>

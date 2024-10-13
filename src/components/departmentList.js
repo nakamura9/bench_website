@@ -18,10 +18,10 @@ export default function DepartmentList (props) {
         <ul className={styles.departmentList}>
            {departments.map(dept => (
                <li key={dept.name}>
-                   <Link to={"/department/" + dept.id}>{dept.name}</Link>
+                   <Link to={"/department/" + dept.id} className={styles.departmentName}><h4>{dept.name}</h4></Link>
                    <ul className={styles.categoryList}>
                        {dept.categories.map(cat => (
-                           <li key={cat.name}><Link to={`/category/${cat.id}/`}>{cat.name}</Link></li>
+                           <Link to={`/category/${cat.id}/`}><li key={cat.name} >{cat.name}</li></Link>
                        ))}
                    </ul>
                </li>

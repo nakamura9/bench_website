@@ -29,7 +29,7 @@ export default  function Blog(props) {
         return <Spinner />
     }
 
-    if(articles.length == 0) {
+    if(articles.length === 0) {
         return (<div className={styles.header}>
             <h1>Welcome to the Blog!</h1>
             <p>There are no articles in the blog at this time. <br />

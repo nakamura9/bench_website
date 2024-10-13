@@ -14,10 +14,10 @@ import { useParams } from "react-router-dom"
 import { BASE_URL } from "../constants"
 
 const reducer = (state, action) => {
-    if(action.type == "increment") {
+    if(action.type === "increment") {
         return ({...state, count: state.count + 1} )
     }
-    if(action.type == "decrement") {
+    if(action.type === "decrement") {
         return ({...state, count: state.count > 0 ? state.count - 1: 0})
     }
     return state
@@ -52,7 +52,7 @@ export default  function Product(props) {
             })
     }, [id]);
 
-    if(name.length == 0) {
+    if(name.length === 0) {
         return <Spinner />
       }
 
@@ -98,12 +98,8 @@ export default  function Product(props) {
                                     </div>
                                   </>
                                 : <p>Sign in for more options.</p>}
-                        </div>
-                    </div>
-                    <div className={styles.share}>
-                        {/* <h5>Share</h5> */}
-                        <br />
-                        <hr /> 
+                        
+                        <h5>Share</h5>
                         <div className={styles.shareBox}>
                             <div><FontAwesomeIcon icon={["fab", "facebook"]} size="2x"/> <span className={styles.socialText}>Facebook</span></div>
                             <div><FontAwesomeIcon icon={["fab", "instagram"]} size="2x"/> <span className={styles.socialText}>Instagram</span></div>
@@ -118,6 +114,7 @@ export default  function Product(props) {
                                   />
                                 : null}
                             
+                        </div>
                         </div>
                     </div>
                 </div>

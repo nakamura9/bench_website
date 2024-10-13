@@ -23,11 +23,11 @@ export default function Captcha(props) {
 
     const onInput = (evt) => {
         setValue(evt.target.value)
-        setValid(parseInt(evt.target.value) == target)
+        setValid(parseInt(evt.target.value) === target)
         if(props.validate) {
-            props.validate(parseInt(evt.target.value) == target)
+            props.validate(parseInt(evt.target.value) === target)
         }
-        console.log(parseInt(evt.target.value) == target)
+        console.log(parseInt(evt.target.value) === target)
     } 
 
     return (

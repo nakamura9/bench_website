@@ -8,7 +8,6 @@
     width: 300px;
     margin-right: 1rem;
     padding-right: 1rem;
-    border-right : 1px solid #ccc
 }
 
 .products {
@@ -23,8 +22,9 @@
 .productDescription {
     margin-left: 1rem;
     margin-right: 2rem;
+    margin-bottom: 2rem;
     padding: 1.5rem;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border: 1px solid #ccc;
     border-radius: 12px;
 }
 

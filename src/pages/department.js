@@ -52,18 +52,19 @@ export default  function Department(props) {
                 <div className={styles.sidebar}>
                     <img src={img}/>
                     <hr />
+                    <h4>Description</h4>
                     <p>{description}</p>
-                    <hr />
+                    
                     <h4>Categories</h4>
                     <ul className={styles.categoryList}>
-                        {categories.map(cat => (<li key={cat.id}><Link to={`/category/${cat.id}/`}>{cat.name}</Link></li>))}
+                        {categories.map(cat => (<Link to={`/category/${cat.id}/`}><li key={cat.id}>{cat.name}</li></Link>))}
                     </ul>
-                    <hr />
+                    
                     <Filters setProducts={setProducts} />
                     
                 </div>
                 <div className={styles.products}>
-                {products.length == 0 && <EmptyList message="This department has no items!" />}
+                {products.length === 0 && <EmptyList message="This department has no items!" />}
                     <div className={styles.productList}>
                         {products.map(p => <Card key={p.name} {...p}/>)}
                     </div>
