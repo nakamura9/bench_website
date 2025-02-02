@@ -11,6 +11,7 @@ export default function Captcha(props) {
 
         const canvas = canvasRef.current
         const context = canvas.getContext('2d')
+        context.clearRect(0,0, 200, 100)
         context.font = "48px serif"
         // range of 10 - 40 and range of 0 - 10
         const first =  Number.parseInt(10 + (Math.random() * 30))

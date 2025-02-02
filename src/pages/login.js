@@ -6,6 +6,7 @@ import {useReducer, useEffect, useState} from "react"
 import axios from "axios"
 import Modal from "../components/modal"
 import Captcha from "../components/captcha"
+import { BASE_URL } from "../constants"
 
 const reducer = (state, action) => {
     const newState = {...state}
@@ -32,9 +33,9 @@ export default  function Login(props) {
             return
         }
         axios({
-            url: "/api/login",
-            method: "GET",
-            params: state
+            url: `${BASE_URL}/login/`,
+            method: "POST",
+            data: state
         }).then(res => {
             if(res.data.token) {
                 redirect("/account/")
@@ -42,6 +43,7 @@ export default  function Login(props) {
                 dispatch({type: "toggle"})
             }
         }).catch(err => {
+            console.log(err)
             dispatch({type: "toggle"})
         })
     }
@@ -65,7 +67,7 @@ export default  function Login(props) {
                     handler={(val) => dispatch({field: "password", value: val})}
                 />
                 <Captcha validate={setCaptchaValid} />
-                <p>Don"t have an account? <Link href="/sign_up"><b>Sign Up</b></Link></p>
+                <p>Don"t have an account? <Link to="/sign-up"><b>Sign Up</b></Link></p>
                 <button
                     className={formStyles.button}
                     onClick={submit}

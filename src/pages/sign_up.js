@@ -5,7 +5,7 @@ import axios from "axios"
 import Modal from "../components/modal"
 import {Link, redirect} from 'react-router-dom'
 import Captcha from "../components/captcha"
-
+import {BASE_URL} from '../constants'
 
 
 const reducer = (state, action) => {
@@ -46,7 +46,7 @@ export default  function SignUp(props) {
         delete params.error_title
         delete params.showModal
         axios({
-            url: "/api/sign_up",
+            url: `${BASE_URL}/sign-up`,
             method: "GET",
             params: state
         }).then(res => {
@@ -113,7 +113,7 @@ export default  function SignUp(props) {
                     handler={(val) => dispatch({field: "confirm_password", value: val})}
                 />
                 <Captcha validate={setCaptchaValid} />
-                <p>Already have an account? <Link href="/login"><b>Login</b></Link></p>
+                <p>Already have an account? <Link to="/login"><b>Login</b></Link></p>
                 <button 
                     className={formStyles.button}
                     onClick={submit}
