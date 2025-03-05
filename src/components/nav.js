@@ -5,6 +5,8 @@ import Context from "../utils/context"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import axios from 'axios'
 import Search from "./search"
+import { BASE_URL } from "../constants"
+
 
 const CurrencyWidget = (props) => {
     const context = useContext(Context)
@@ -13,26 +15,30 @@ const CurrencyWidget = (props) => {
         e.stopPropagation()
         axios({
             method: "GET",
-            url: "/api/get_exchange_rate/",
+            url: `${BASE_URL}/get-exchange-rate/`,
             params: {currency: e.target.value}
         }).then(res => {
             const currency_obj = context.currencies.filter(c => c.id === e.target.value)[0]
             context.updateCurrency(currency_obj)
             context.updateExchangeRate(res.data.rate)
+        }).catch(err => {
+            console.log(err)
         })
     }
 
     return (
     <li>
-        <label>Currency: </label><br />
-        <select 
-            onClick={toggleCurrency}
-            className={styles.select}
-        >
-            {context.currencies.map(c => (
-                <option key={c.id} value={c.id}>{c.symbol}</option>
-            ))}
-        </select>
+        <div style={{width: "100%"}}>
+            <label>Currency: </label>
+            <select 
+                onClick={toggleCurrency}
+                className={styles.select}
+            >
+                {context.currencies.map(c => (
+                    <option key={c.id} value={c.id}>{c.symbol}</option>
+                ))}
+            </select>
+        </div>
     </li>
 )}
 
@@ -46,8 +52,8 @@ const AccountMenu = props => {
                 <ul className={styles.mobileNavDropdownList}>
                     {context.account
                         ? <>
-                            <li><Link to="/wishlist">Wishlist</Link></li>
-                            <li><Link to="/cart">Cart</Link></li>
+                            <li><Link to="/wishlist"> <FontAwesomeIcon icon="heart" /> Wishlist</Link></li>
+                            <li><Link to="/cart"><FontAwesomeIcon icon="heart" />  Cart</Link></li>
                             <li><Link to="/account">My Account</Link></li>
                           </>
                         : null
@@ -73,13 +79,13 @@ const AccountMenu = props => {
                     
                 {context.account
                     ? <>
-                        <li><FontAwesomeIcon icon="heart"/>  <Link to="/wishlist">Wish List</Link></li>
-                        <li><FontAwesomeIcon icon="shopping-cart"/> <Link to="/cart">Cart</Link></li>
-                        <li><FontAwesomeIcon icon="user"/> <Link to="/account">My Account</Link></li>
+                        <li><Link to="/wishlist"><FontAwesomeIcon icon="heart"/>  <span>Wish List</span></Link></li>
+                        <li><Link to="/cart"><FontAwesomeIcon icon="shopping-cart"/> <span>Cart</span></Link></li>
+                        <li><Link to="/account"><FontAwesomeIcon icon="user"/> <span>My Account</span></Link></li>
                       </>
                     : <>
-                        <li><Link to="/login">Login</Link></li>
-                        <li><Link to="/sign-up">Sign Up</Link></li>
+                        <li><Link to="/login"><FontAwesomeIcon icon={"lock"} /> <span>Login</span></Link></li>
+                        <li><Link to="/sign-up"><FontAwesomeIcon icon={"user"} /> <span>Sign Up</span></Link></li>
                       </>
                 }
                 <CurrencyWidget  />

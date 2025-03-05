@@ -18,21 +18,26 @@ export default function Footer(props) {
                 <h5>Contact</h5>
                 <hr />
                 <ul>
-                    <li><Link><FontAwesomeIcon icon={"at"}/> Email</Link></li>
-                    <li><FontAwesomeIcon icon={"phone"}/> {
-                        props.config && props.config.company && props.config.company.telephone 
-                            ? props.config.company.telephone
-                            : "Telephone"}</li>
-                    <li><FontAwesomeIcon icon={"home"}/> Address</li>
+                {props.config && props.config.company && props.config.company.email &&
+                    <li><a href={`mailto:${props.config.company.email}`}><FontAwesomeIcon icon={"at"}/> Email</a></li>}
+                    {props.config && props.config.company && props.config.company.telephone &&
+                        <li><FontAwesomeIcon icon={"phone"}/> {props.config.company.telephone}</li>
+                    }
+                    <li><Link to="/contact"><FontAwesomeIcon icon={"home"}/> Address</Link></li>
                 </ul>
             </div>
             <div>
                 <h5>Social</h5>
                 <hr />
                 <ul>
-                    <li><FontAwesomeIcon icon={["fab", "instagram"]}/> Instagram</li>
-                    <li><FontAwesomeIcon icon={["fab", "facebook"]}/> Facebook</li>
-                    <li><FontAwesomeIcon icon={["fab", "whatsapp"]}/> Whatsapp</li>
+                    {props.config && props.config.company && !["", undefined, null].includes(props.config.company.instagram_id) &&
+                        <li><a href={props.config.company.instagram_id}><FontAwesomeIcon icon={["fab", "instagram"]}/> Instagram</a></li>}
+                    {props.config && props.config.company && !["", undefined, null].includes(props.config.company.facebook_id) &&
+                        <li><a href={props.config.company.facebook_id}><FontAwesomeIcon icon={["fab", "facebook"]}/> Facebook</a></li>}
+                    {props.config && props.config.company && props.config.company.whatsapp_id &&
+                        <li><a href={`https://wa.me/${props.config.company.whatsapp_id}`}><FontAwesomeIcon icon={["fab", "whatsapp"]}/> Whatsapp</a></li>
+                    }
+                    
                 </ul>
             </div>
         </footer>

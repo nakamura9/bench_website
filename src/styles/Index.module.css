@@ -25,6 +25,7 @@
 .productList {
     display: flex;
     flex-wrap: wrap;
-    justify-self: center;
+    justify-self: flex-start;
+    gap: 8px;
 }
 

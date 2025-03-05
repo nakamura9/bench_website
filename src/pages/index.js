@@ -6,12 +6,14 @@ import axios from "axios"
 import Card from "../components/product"
 import { ArticleCard } from "../components/blog"
 import { BASE_URL } from "../constants"
+import Spinner from "../components/spinner"
 
 export default function Index() {
   const [departments, setDepartments] = useState([])
   const [featured, setFeatured] = useState([])
   const [articles, setArticles] = useState([])
   const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     axios.get(`${BASE_URL}/index`)
@@ -20,10 +22,15 @@ export default function Index() {
                 setFeatured(res.data.featured_items)
                 setData(res.data.settings)
                 setArticles(res.data.articles)
+                setLoading(false)
             }).catch(err => {
               console.log(err)
             })
   }, [])
+
+  if( loading ) {
+    return <Spinner />
+  }
 
   return (
     <div >

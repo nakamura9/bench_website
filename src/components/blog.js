@@ -17,7 +17,6 @@ const Author = (props) => {
 }
 
 const ArticleCard = (props) => {
-    console.log({props})
     return (
         <div className={cardStyles.card}>
             <img src={props.image}/>

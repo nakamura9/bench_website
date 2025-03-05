@@ -12,8 +12,6 @@ export default function Search(props) {
     const [searching, setSearching] = useState(false)
     const [expanded, setExpanded] = useState(false)
     const search = (val) => {
-        console.log('search')
-        console.log(val)
         if(!val || val.length < 3) {
           setShow(false)
           setResults([])

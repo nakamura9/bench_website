@@ -1,6 +1,8 @@
 .root-content {
     margin-top: 60px;
-    min-height: calc(100vh - 60px)
+    min-height: calc(100vh - 60px);
+    max-width: 992px;
+    margin: 60px auto
 }
 
 :root {

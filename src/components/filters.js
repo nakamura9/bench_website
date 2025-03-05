@@ -1,6 +1,8 @@
 import axios from "axios"
 import { useReducer } from "react"
 import Input from "./input"
+import { BASE_URL } from "../constants"
+import Select from "./select"
 
 const reducer = (state, action) => {
     console.log(action)
@@ -10,7 +12,7 @@ const reducer = (state, action) => {
 }
 
 export default function Filters(props) {
-    const [state, dispatch] = useReducer(reducer, { name: "", min_price: "", max_price: ""}) 
+    const [state, dispatch] = useReducer(reducer, { name: "", min_price: "", max_price: "", sort_by: "new"}) 
 
     const search = () => {
         const params = {}
@@ -30,10 +32,10 @@ export default function Filters(props) {
         }
         
         axios({
-          url: "/api/search", 
+          url: `${BASE_URL}/product/`, 
           params: params
         }).then(res => {
-            props.setProducts(res.data)    
+            props.setProducts(res.data.results)    
         })
       }
       
@@ -61,7 +63,18 @@ export default function Filters(props) {
                     value={state.max_price}
                     handler={val => dispatch({name: "max_price", value: val})}
                 />
-                
+
+                <Select 
+                    selected={state.sort_by}
+                    handler={val => dispatch({name: "sort_by", value: val})}
+                    options={[
+                        {label: 'Price - Lowest First', value: 'cheap'}, 
+                        {label: 'Price - Highest First', value: 'expensive'}, 
+                        {label: 'Modified - Newest First', value: 'new'}, 
+                        {label: 'Modified - Oldest First', value: 'old'}
+                    ]} 
+                    label="Sort By"
+                />
                 <button 
                     className="teal-button btn"
                     onClick={search}

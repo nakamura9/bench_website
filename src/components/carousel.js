@@ -44,7 +44,6 @@ export default function Carousel(props) {
 
     }, [state.currentImgIndex])
 
-    console.log({props})
     if(props.img_list.length === 0) {
         return <FontAwesomeIcon icon="image" size="10x" />
     }
